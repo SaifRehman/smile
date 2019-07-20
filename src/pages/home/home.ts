@@ -22,7 +22,6 @@ public hours: any = [];
 
     while (i--) {
         j = Math.floor(Math.random() * (i+1));
-        // swap randomly chosen element with current element
         temp = array[i];
         array[i] = array[j];
         array[j] = temp;
