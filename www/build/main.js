@@ -55,10 +55,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl) {
         this.navCtrl = navCtrl;
+        this.randomTimeArray = [];
+        this.hours = [];
+        for (var i = 0; i < 24; i++) {
+            this.hours.push(i);
+        }
+        this.getRandomTime();
     }
+    HomePage.prototype.shuffle = function (array) {
+        var i = array.length, j = 0, temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            // swap randomly chosen element with current element
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    };
+    HomePage.prototype.getRandomTime = function () {
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth();
+        var day = new Date().getDate();
+        var i = 0;
+        var shuffledArray = this.shuffle(this.hours);
+        while (i < 5) {
+            this.randomTimeArray.push(new Date(year, month, day, shuffledArray[i], 0, 0, 0));
+            i++;
+        }
+        console.log(this.randomTimeArray);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/saifrehman/Desktop/smile/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/saifrehman/Desktop/smile/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/saifrehman/Desktop/sm/smile/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/saifrehman/Desktop/sm/smile/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -177,7 +206,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/saifrehman/Desktop/smile/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/saifrehman/Desktop/smile/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/saifrehman/Desktop/sm/smile/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/saifrehman/Desktop/sm/smile/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
