@@ -57,6 +57,9 @@ var HomePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.randomTimeArray = [];
         this.hours = [];
+        this.zikr = [];
+        this.scheduleNotification = [];
+        this.zikr = ['zikr1', 'zikr2', 'zikr3', 'zikr4', 'zikr5', 'zikr6'];
         for (var i = 0; i < 24; i++) {
             this.hours.push(i);
         }
@@ -78,11 +81,28 @@ var HomePage = /** @class */ (function () {
         var day = new Date().getDate();
         var i = 0;
         var shuffledArray = this.shuffle(this.hours);
+        this.zikr = this.shuffle(this.zikr);
         while (i < 5) {
             this.randomTimeArray.push(new Date(year, month, day, shuffledArray[i], 0, 0, 0));
             i++;
         }
-        console.log(this.randomTimeArray);
+        this.scheduleNotificationFn();
+    };
+    HomePage.prototype.scheduleNotificationFn = function () {
+        var _this = this;
+        this.randomTimeArray.forEach(function (element, index) {
+            _this.scheduleNotification.push({
+                id: index,
+                title: 'Zikr',
+                text: _this.zikr[index],
+                firstAt: new Date(element),
+                every: 24 * 60
+                // data: {"id": 1, "name": "Mr. A"}
+            });
+        });
+        console.log(this.scheduleNotification);
+        // cal here schedule notification function like this
+        //  this.localNotifications.schedule(this.scheduleNotification);   <---- like this
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
